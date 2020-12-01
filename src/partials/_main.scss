@@ -1,0 +1,37 @@
+.Main {
+  width: 100vw;
+  display: grid;
+  // grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 50px;
+  height: 100vh;
+
+  div {
+    box-shadow: 2px 3px 3px #888888;
+    margin: 5px;
+
+    h1 {
+      font-size: 15rem;
+      margin: 0;
+    }
+  }
+
+  div:nth-child(1) {
+    grid-column: span 1;
+  }
+  div:nth-child(2) {
+    grid-column: span 3;
+  }
+  div:nth-child(3) {
+    grid-column: span 3;
+  }
+  div:nth-child(4) {
+    grid-column: span 1;
+  }
+}
+
+button {
+  width: 50px;
+  height: 20px;
+  margin: 10px;
+}
