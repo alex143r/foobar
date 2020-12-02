@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function TapLevel({ taps }) {
-  console.log(taps);
+  //console.log(taps);
   return (
     <>
       {taps.map((tap) => {
