@@ -5,6 +5,7 @@ import StorageAmount from "./StorageAmount";
 export default function ListContainer({ storage, taps }) {
   //console.log(storage, taps);
   const [filter, setFilter] = useState("all");
+  const [sortKey, setSortKey] = useState("name");
 
   const FullDataObject = {
     name: "",
@@ -48,11 +49,23 @@ export default function ListContainer({ storage, taps }) {
   //const filteredList = fullDataArray.filter((beer) => beer.name.length > 10);
   //console.log("LIST", filteredList);
 
+  filteredList = filteredList.sort((a, b) => {
+    if (a[sortKey] > b[sortKey]) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+
   return (
     <>
-      <button onClick={() => setFilter("all")}>All</button>
-      <button onClick={() => setFilter(true)}>On tap</button>
-      <button onClick={() => setFilter(false)}>Not on tap</button>
+      <button onClick={() => setFilter("all")}>Filter: All</button>
+      <button onClick={() => setFilter(true)}>Filter: On tap</button>
+      <button onClick={() => setFilter(false)}>Filter: Not on tap</button>
+
+      <button onClick={() => setSortKey("name")}>Sort: Name</button>
+      <button onClick={() => setSortKey("amount")}>Sort: Amount</button>
+      <button onClick={() => setSortKey("taps")}>Sort: Taps</button>
       <ul>
         {filteredList.map((beer) => {
           return (
