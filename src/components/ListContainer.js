@@ -1,22 +1,9 @@
 import React from "react";
 import TapLevel from "./TapLevel";
+import StorageAmount from "./StorageAmount";
 
 export default function ListContainer({ storage, taps }) {
   //console.log(storage, taps);
-
-  const filteredList = storage.filter((beer) => beer.name === "El Hefe");
-  //console.log(filteredList);
-
-  //const newArr = [];
-  // const tapsCurrent = taps.map((tap) => {
-  //console.log(tap);
-  // const filtered = storage.filter((item) => tap.beer === item.name);
-  //console.log(filtered);
-  //const newObj = { ...filtered, tap };
-  //console.log(newObj);
-  //     newArr.push(newObj);
-  //   });
-  //console.log(newArr);
 
   const FullDataObject = {
     name: "",
@@ -50,24 +37,33 @@ export default function ListContainer({ storage, taps }) {
   prepareObjects(storage);
   //console.log("DATA_____", fullDataArray);
 
+  const filteredList = fullDataArray.filter((beer) => beer);
+  //const filteredList = fullDataArray.filter((beer) => beer.name.length > 10);
+  //console.log("LIST", filteredList);
+
   return (
-    <ul>
-      {fullDataArray.map((beer) => {
-        return (
-          <li key={beer.name}>
-            <h2>{beer.name}</h2>
-            {beer.taps.length > 0 ? (
-              beer.taps.map((tap) => {
-                return <TapLevel taps={beer.taps} />;
-              })
-            ) : (
-              <p>Not on tap</p>
-            )}
-            <h3>Lager</h3>
-            <h3>{beer.amount}</h3>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <button>On tap</button>
+      <button>Not on tap</button>
+      <ul>
+        {filteredList.map((beer) => {
+          return (
+            <li key={beer.name}>
+              <h2>{beer.name}</h2>
+              <div className="progress-container">
+                {beer.taps.length > 0 ? (
+                  <TapLevel taps={beer.taps} />
+                ) : (
+                  <h3>Not on tap</h3>
+                )}
+              </div>
+              {/* <h3>Lager</h3>
+            <h3>{beer.amount}</h3> */}
+              <StorageAmount amount={beer.amount} />
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }

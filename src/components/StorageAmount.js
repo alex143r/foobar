@@ -1,11 +1,16 @@
 import React from "react";
 
-export default function TapLevel({ taps }) {
-  //Link to CSS-tricks article about progress-element: https://css-tricks.com/html5-progress-element/
-  //console.log(taps);
+export default function StorageAmount({ amount }) {
+  console.log(amount);
   return (
     <>
-      {taps.map((tap) => {
+      <div className="amount-container">
+        <h3>Lager</h3>
+        <div className="amount-background">
+          <h3>{amount}</h3>
+        </div>
+      </div>
+      {/* {taps.map((tap) => {
         return (
           <>
             <label style={{ display: "block" }} for="tap-level">
@@ -18,7 +23,7 @@ export default function TapLevel({ taps }) {
             ></progress>
           </>
         );
-      })}
+      })} */}
     </>
   );
 }

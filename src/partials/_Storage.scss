@@ -2,8 +2,11 @@
 
 ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 20px;
+  width: 90%;
+  padding: 0;
+  margin: auto;
 }
 
 li {
@@ -11,23 +14,28 @@ li {
   background-color: $secondaryWhite;
   //border: 2px solid rgba(0, 0, 0, 0.25);
   border-radius: 25px;
-  max-width: 300px;
+  max-width: 250px;
+  min-width: 200px;
+  min-height: 250px;
   padding: 1rem 1.5rem;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transition: all 0.5s;
+  margin: auto;
   h2 {
     text-align: center;
   }
   h3 {
-    text-align: right;
+    text-align: center;
   }
   progress {
-    height: 40px;
+    height: 30px;
     width: 100%;
     background-color: #fff;
     border: 1px solid $primaryBlack;
     //border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 6px;
     //transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.25s;
+    margin: 0.2rem 0 1rem 0;
   }
 
   progress::-webkit-progress-bar {
@@ -46,5 +54,30 @@ li {
     background-color: $primaryBlue;
     border-radius: 5px;
     transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+  }
+
+  display: grid;
+  grid-template-rows: 1fr 2.5fr 1fr;
+}
+li:hover {
+  transform: translateY(-10px);
+}
+
+.amount-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  .amount-background {
+    width: 40px;
+    height: 40px;
+    background-color: $secondaryGreen;
+    //background-color: #e8ae2a;
+    //background-color: $secondaryRed;
+    border-radius: 5px;
+    border: darken($secondaryGreen, 30%) 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
