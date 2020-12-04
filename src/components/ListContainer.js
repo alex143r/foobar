@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import TapLevel from "./TapLevel";
 import StorageAmount from "./StorageAmount";
 
 export default function ListContainer({ storage, taps }) {
   //console.log(storage, taps);
+  const [filter, setFilter] = useState("all");
 
   const FullDataObject = {
     name: "",
@@ -37,14 +38,21 @@ export default function ListContainer({ storage, taps }) {
   prepareObjects(storage);
   //console.log("DATA_____", fullDataArray);
 
-  const filteredList = fullDataArray.filter((beer) => beer);
+  let filteredList = fullDataArray;
+
+  if (filter !== "all") {
+    filteredList = fullDataArray.filter(
+      (beer) => beer.taps.length > 0 === filter
+    );
+  }
   //const filteredList = fullDataArray.filter((beer) => beer.name.length > 10);
   //console.log("LIST", filteredList);
 
   return (
     <>
-      <button>On tap</button>
-      <button>Not on tap</button>
+      <button onClick={() => setFilter("all")}>All</button>
+      <button onClick={() => setFilter(true)}>On tap</button>
+      <button onClick={() => setFilter(false)}>Not on tap</button>
       <ul>
         {filteredList.map((beer) => {
           return (

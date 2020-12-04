@@ -59,9 +59,6 @@ li {
   display: grid;
   grid-template-rows: 1fr 2.5fr 1fr;
 }
-li:hover {
-  transform: translateY(-10px);
-}
 
 .amount-container {
   display: flex;
