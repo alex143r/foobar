@@ -15,12 +15,9 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  //const [serving, setServing] = useState([]);
-  const newServ = [facts.serving];
-
   return (
     <div className="App">
-      <Main facts={facts} ns={newServ}></Main>
+      <Main facts={facts}> </Main>
     </div>
   );
 }
