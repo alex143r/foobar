@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { get } from "./modules/rest";
 
+import Main from "./components/Main";
 import "./App.scss";
 
 function App() {
@@ -13,16 +14,13 @@ function App() {
     }, 2000);
     return () => clearInterval(interval);
   }, []);
-  console.log(facts);
+
+  //const [serving, setServing] = useState([]);
+  const newServ = [facts.serving];
+
   return (
     <div className="App">
-      {facts.bar !== undefined ? (
-        <div>
-          <h1>{facts.bar.name}</h1>
-          <p>{facts.bartenders[0].name}</p>
-          <p>{facts.bartenders[0].statusDetail}</p>
-        </div>
-      ) : null}
+      <Main facts={facts} ns={newServ}></Main>
     </div>
   );
 }

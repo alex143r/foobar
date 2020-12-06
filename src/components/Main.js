@@ -1,20 +1,29 @@
 import React from "react";
+import ClosingTime from "./ClosingTime";
 import QueueNr from "./QueueNr";
+import Bartenders from "./Bartenders";
+import BeerSold from "./BeerSold";
+import QueueHistory from "./QueueHistory";
 
-export default function Main({ facts }) {
+export default function Main({ facts, ns }) {
   return (
     <main>
-      <button className="button1">1</button>
-      <button className="button2">2</button>
-      <button className="button3">3</button>
-
       <div className="Main">
         <div>
           <QueueNr queue={facts.queue}></QueueNr>
         </div>
-        <div></div>
-        <div>Object3</div>
-        <div>Object4</div>
+        <div>
+          <QueueHistory queue={facts.queue}></QueueHistory>
+        </div>
+        <div className="Bartenders">
+          <Bartenders bartenders={facts.bartenders}></Bartenders>
+        </div>
+        <div>
+          <BeerSold serving={facts.serving}></BeerSold>
+        </div>
+        <div>
+          <ClosingTime bar={facts.bar}></ClosingTime>
+        </div>
       </div>
     </main>
   );
