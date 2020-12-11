@@ -35,6 +35,9 @@
   div:nth-child(5) {
     grid-column: span 1;
   }
+  .Graph {
+    grid-column: span 4;
+  }
 }
 
 button {

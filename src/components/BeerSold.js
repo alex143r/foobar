@@ -21,5 +21,5 @@ export default function BeerSold({ serving }) {
       setCount((prevCount) => prevCount + order.order.length);
     }
   });
-  return <h1>{count} </h1>;
+  return <h1>{count}</h1>;
 }

@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import ClosingTime from "./ClosingTime";
 import QueueNr from "./QueueNr";
 import Bartenders from "./Bartenders";
 import BeerSold2 from "./BeerSold2";
 import QueueHistory from "./QueueHistory";
+import BeerSoldDup from "./BeerSoldDup";
 import BeerSold from "./BeerSold";
 import BeerStats from "./BeerStats";
+import BeerGraph from "./BeerGraph";
 
 export default function Main({ facts }) {
+  //console.log(beers);
+
   return (
     <main>
       <div className="Main">
@@ -33,6 +37,23 @@ export default function Main({ facts }) {
         <div>
           {facts.length === undefined ? (
             <BeerStats serving={facts.serving}></BeerStats>
+          ) : (
+            <h1>no</h1>
+          )}
+        </div>
+        <div>
+          {facts.length === undefined ? (
+            <BeerGraph
+              serving={facts.serving}
+              storage={facts.storage}
+            ></BeerGraph>
+          ) : (
+            <h1>no</h1>
+          )}
+        </div>
+        <div>
+          {facts.length === undefined ? (
+            <BeerSoldDup serving={facts.serving}></BeerSoldDup>
           ) : (
             <h1>no</h1>
           )}
