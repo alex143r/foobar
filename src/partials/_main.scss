@@ -38,6 +38,10 @@
   .Graph {
     grid-column: span 4;
   }
+  canvas {
+    width:100%;
+    grid-column: span 5;
+  }
 }
 
 button {

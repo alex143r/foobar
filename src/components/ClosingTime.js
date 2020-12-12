@@ -25,9 +25,10 @@ export default function ClosingTime({ bar }) {
     timeDiffMin = checkLength(timeDiffMin);
     timeDiffSec = checkLength(timeDiffSec);
 
-    timeDiff = timeDiffHrs + ":" + timeDiffMin + ":" + timeDiffSec;
-    if (timeDiffHrs >= 22) {
+    if (timeDiffHrs < 0 || timeDiffHrs > 7) {
       timeDiff = "closed";
+    } else {
+      timeDiff = timeDiffHrs + ":" + timeDiffMin + ":" + timeDiffSec;
     }
 
     function checkLength(number) {
