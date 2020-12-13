@@ -60,10 +60,11 @@ export default function BeerSoldDupB({ serving, storage }) {
   console.log(sold);
   useEffect(() => {
     const interval = setInterval(() => {
-      const newArray = sold.map((beer) => {
-        setChartY([beer.counter]);
-        return newArray;
+      sold.map((beer) => {
+        setChartY((previous) => [previous, beer.counter]);
+        return chartY;
       });
+      console.log(chartY);
     }, 10000);
     return () => clearInterval(interval);
   }, []);
@@ -71,7 +72,7 @@ export default function BeerSoldDupB({ serving, storage }) {
   //console.log(serving);
   //console.log(newArr);
   const data = {
-    labels: newArray,
+    labels: chartX,
     datasets: [
       {
         label: "# of Votes",
