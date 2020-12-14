@@ -3,6 +3,7 @@ import { Bar } from "react-chartjs-2";
 
 export default function BeerSoldDupB({ serving, storage }) {
   const [beers, setBeers] = useState([...serving]);
+
   const [chartX, setChartX] = useState([]);
   const [chartY, setChartY] = useState([]);
   const [sold, setSold] = useState([]);
@@ -15,7 +16,7 @@ export default function BeerSoldDupB({ serving, storage }) {
       return chartX, sold;
     });
   }
-  console.log(chartX);
+  //console.log(chartX);
   function initialCount() {
     let initCount = 0;
     beers.forEach((order) => {
@@ -27,27 +28,30 @@ export default function BeerSoldDupB({ serving, storage }) {
   const [count, setCount] = useState(initialCount);
   const [count2, setCount2] = useState(initialCount);
 
-  serving.map((step1) => {
-    const findItem = beers.find((item) => item.id === step1.id);
+  serving.map((order) => {
+    const findOrder = beers.find((item) => item.id === order.id);
 
-    if (findItem === undefined) {
-      setBeers([...beers, step1]);
-      setCount((prevCount) => prevCount + step1.order.length);
+    if (findOrder === undefined) {
+      setBeers([...beers, order]);
+      setCount((prevCount) => prevCount + order.order.length);
 
-      step1.order.map((step2) => {
-        console.log(step2);
+      order.order.map((beer) => {
+        // const newSoldItem=
         // setNewArr([...newArr, step2]);
         //setCount2((prevCount2) => prevCount2 + 1);
         //newArr.push(step2);
         //setNewArr((prev) => ({ beers: newArr.concat(step2) }));
         //  const findTing = sold.name.indexOf(step2);
         //  console.log(findTing);
-        const newBeerId = sold
+
+        const beerId = sold
           .map((beer) => {
             return beer.beer;
           })
-          .indexOf(step2);
-        sold[newBeerId].counter = sold[newBeerId].counter + 1;
+          .indexOf(beer);
+
+        sold[beerId].counter = sold[beerId].counter + 1;
+        return sold;
         //  sold[newBeerId].counter++;
 
         //   if (findTing < 0) {
@@ -55,22 +59,15 @@ export default function BeerSoldDupB({ serving, storage }) {
         // } else {
         //  }
       });
-    }
-  });
-  console.log(sold);
-  useEffect(() => {
-    const interval = setInterval(() => {
+      setChartY([]);
       sold.map((beer) => {
-        setChartY((previous) => [previous, beer.counter]);
+        setChartY((prev) => [...prev, beer.counter]);
+
         return chartY;
       });
-      console.log(chartY);
-    }, 10000);
-    return () => clearInterval(interval);
-  }, []);
+    }
+  });
 
-  //console.log(serving);
-  //console.log(newArr);
   const data = {
     labels: chartX,
     datasets: [
@@ -100,9 +97,7 @@ export default function BeerSoldDupB({ serving, storage }) {
     scales: {
       yAxes: [
         {
-          ticks: {
-            beginAtZero: true,
-          },
+          ticks: {},
         },
       ],
     },

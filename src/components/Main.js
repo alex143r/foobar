@@ -16,49 +16,14 @@ export default function Main({ facts }) {
   return (
     <main>
       <div className="Main">
-        <div>
-          <QueueNr queue={facts.queue}></QueueNr>
-        </div>
-        <div>
-          <QueueHistory queue={facts.queue}></QueueHistory>
-        </div>
-        <div className="Bartenders">
-          <Bartenders bartenders={facts.bartenders}></Bartenders>
-        </div>
-        <div>
+        <div className="QueueNr">
           {facts.length === undefined ? (
-            <BeerSold serving={facts.serving}></BeerSold>
+            <QueueNr queue={facts.queue}></QueueNr>
           ) : (
             <h1>no</h1>
           )}
         </div>
-        <div>
-          <ClosingTime bar={facts.bar}></ClosingTime>
-        </div>
-        <div>
-          {facts.length === undefined ? (
-            <BeerStats serving={facts.serving}></BeerStats>
-          ) : (
-            <h1>no</h1>
-          )}
-        </div>
-        <div>
-          {facts.length === undefined ? (
-            <BeerGraph
-              serving={facts.serving}
-              storage={facts.storage}
-            ></BeerGraph>
-          ) : (
-            <h1>no</h1>
-          )}
-        </div>
-        <div>
-          {facts.length === undefined ? (
-            <BeerSoldDup serving={facts.serving}></BeerSoldDup>
-          ) : (
-            <h1>no</h1>
-          )}
-        </div>{" "}
+
         <div className="Graph">
           {facts.length === undefined ? (
             <BeerSoldDupB
@@ -68,6 +33,24 @@ export default function Main({ facts }) {
           ) : (
             <h1>no</h1>
           )}
+        </div>
+        <div className="Bartenders">
+          {facts.length === undefined ? (
+            <Bartenders bartenders={facts.bartenders}></Bartenders>
+          ) : (
+            <h1>no</h1>
+          )}
+        </div>
+
+        <div className="Sold">
+          {facts.length === undefined ? (
+            <BeerSold serving={facts.serving}></BeerSold>
+          ) : (
+            <h1>no</h1>
+          )}
+        </div>
+        <div className="Closing">
+          <ClosingTime bar={facts.bar}></ClosingTime>
         </div>
       </div>
     </main>
