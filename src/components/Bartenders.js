@@ -1,12 +1,58 @@
 import React, { useState } from "react";
 
 export default function Bartenders({ bartenders }) {
-  const [work, setWork] = useState([...bartenders]);
-  console.log(work);
+  const [workers, setWorkers] = useState([]);
+
+  if (workers.length === 0) {
+    bartenders.map((bartender) => {
+      setWorkers((prev) => [
+        ...prev,
+        {
+          name: bartender.name,
+          servingCustomer:
+            bartender.servingCustomer !== null
+              ? [bartender.servingCustomer]
+              : [],
+          count: 0,
+        },
+      ]);
+      return workers;
+    });
+  }
+
+  if (workers.length > 0) {
+    bartenders.map((bartender) => {
+      const nameId = workers
+        .map((bartender) => {
+          return bartender.name;
+        })
+        .indexOf(bartender.name);
+      workers.map((worker) => {
+        if (worker.name === bartender.name) {
+          if (
+            worker.servingCustomer[worker.servingCustomer.length - 1] !==
+              bartender.servingCustomer &&
+            bartender.servingCustomer !== null
+          ) {
+            //https://stackoverflow.com/questions/39889009/replace-object-in-array-on-react-state
+            let newArr = [...workers];
+            console.log(bartender.servingCustomer);
+            newArr[nameId].servingCustomer = [
+              ...newArr[nameId].servingCustomer,
+              bartender.servingCustomer,
+            ];
+            setWorkers(newArr);
+          }
+        }
+      });
+    });
+  }
+  console.log(workers);
+
   return (
     <div className="Bartenders" key={1}>
       <div>
-        <h2>name</h2>
+        <h2>Name</h2>
         {bartenders.map((bartender) => {
           return <p> {bartender.name}</p>;
         })}
@@ -24,15 +70,15 @@ export default function Bartenders({ bartenders }) {
         })}
       </div>
       <div>
-        <h2>name</h2>
+        <h2>Status</h2>
         {bartenders.map((bartender) => {
           return <p> {bartender.status.toLowerCase()}</p>;
         })}
       </div>
       <div>
-        <h2>name</h2>
-        {bartenders.map((bartender) => {
-          return <p> {bartender.name}</p>;
+        <h2>Expedited</h2>
+        {workers.map((worker) => {
+          return <p>{worker.servingCustomer.length}</p>;
         })}
       </div>
     </div>

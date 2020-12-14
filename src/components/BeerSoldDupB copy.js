@@ -7,7 +7,6 @@ export default function BeerSoldDupB({ serving, storage }) {
   const [chartX, setChartX] = useState([]);
   const [chartY, setChartY] = useState([]);
   const [sold, setSold] = useState([]);
-  const [count, setCount] = useState(initialCount);
 
   if (sold.length === 0) {
     storage.map((beer) => {
@@ -26,6 +25,9 @@ export default function BeerSoldDupB({ serving, storage }) {
     return initCount;
   }
 
+  const [count, setCount] = useState(initialCount);
+  const [count2, setCount2] = useState(initialCount);
+
   serving.map((order) => {
     const findOrder = beers.find((item) => item.id === order.id);
 
@@ -34,22 +36,29 @@ export default function BeerSoldDupB({ serving, storage }) {
       setCount((prevCount) => prevCount + order.order.length);
 
       order.order.map((beer) => {
+        // const newSoldItem=
+        // setNewArr([...newArr, step2]);
+        //setCount2((prevCount2) => prevCount2 + 1);
+        //newArr.push(step2);
+        //setNewArr((prev) => ({ beers: newArr.concat(step2) }));
+        //  const findTing = sold.name.indexOf(step2);
+        //  console.log(findTing);
+
         const beerId = sold
           .map((beer) => {
             return beer.beer;
           })
           .indexOf(beer);
 
-        var stateCopy = Object.assign([], sold);
-        stateCopy = stateCopy.slice();
-        stateCopy[beerId] = Object.assign({}, stateCopy[beerId]);
-        stateCopy[beerId].counter = sold[beerId].counter + 1;
-
-        setSold(stateCopy);
-        //sold[beerId].counter = sold[beerId].counter + 1;
+        sold[beerId].counter = sold[beerId].counter + 1;
         return sold;
-      });
+        //  sold[newBeerId].counter++;
 
+        //   if (findTing < 0) {
+        //setNewArr((previous) => [...previous, step2]);
+        // } else {
+        //  }
+      });
       setChartY([]);
       sold.map((beer) => {
         setChartY((prev) => [...prev, beer.counter]);
