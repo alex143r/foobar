@@ -1,52 +1,66 @@
+.App {
+  background-color: $secondaryWhite;
+  #title {
+    margin: 20px 0 0 20px;
+    font-size: 38px;
+  }
+}
 .Main {
-  width: 100vw;
   display: grid;
   // grid-template-columns: repeat(4,1fr);
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 50px;
-  height: 100vh;
-  background-color: $secondaryWhite;
-
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 2fr 1fr;
+  grid-gap: 10px 30px;
   div {
     box-shadow: none;
-
+    background-color: #ffffff;
     margin: 2rem;
     box-shadow: 10px 18px 30px rgba(0, 0, 0, 0.04);
     border-radius: 50px;
+    height: auto;
     div {
       box-shadow: none;
       border-radius: 0;
+      margin: 0;
+      padding: 0;
     }
   }
 
   div:nth-child(1) {
-    grid-column: span 1;
+    grid-column: span 2;
+    grid-row: 1/2;
   }
   div:nth-child(2) {
-    grid-column: span 3;
+    grid-column: span 4;
+    grid-row: 1/2;
   }
   div:nth-child(3) {
-    grid-column: span 2;
+    grid-column: span 3;
+    grid-row: 2/3;
+    margin: 0 0 0 2rem;
   }
   div:nth-child(4) {
     grid-column: span 1;
+    grid-row: 2/3;
+    margin: 0;
   }
   div:nth-child(5) {
-    grid-column: span 1;
+    grid-column: span 2;
+    grid-row: 2/3;
+    margin: 0 2rem 0 0;
   }
 
   .QueueNr {
-    align-items: center;
-    margin: 0 auto;
-
+    margin: 2em 0 2em 2em;
     h3 {
       margin: 50px 0 0 20px;
     }
     div {
       display: flex;
-      align-items: center;
+
+      justify-content: center;
       h1 {
-        font-size: 30vh;
+        font-size: 200px;
       }
     }
 
@@ -57,7 +71,7 @@
       border-right: 30px solid transparent;
 
       border-bottom: 50px solid red;
-      margin-top: 100px;
+      margin-top: 150px;
       transition: 1s;
     }
 
@@ -66,37 +80,58 @@
       height: 0;
       border-left: 30px solid transparent;
       border-right: 30px solid transparent;
-      margin-top: 100px;
+      margin-top: 150px;
       transition: 1s;
 
       border-top: 50px solid green;
     }
   }
-
+  .Graph {
+    margin: 2em 2em 2em 0;
+    div {
+      border-radius: 50px;
+      canvas {
+      }
+    }
+  }
   .Bartenders {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
 
     div {
       box-shadow: none;
       border-radius: 0;
+      padding-right: 10px;
+      margin: auto;
+      p {
+        padding-top: 5px;
+      }
     }
   }
   .Sold {
+    padding: 2rem;
     display: flex;
-    justify-content: center;
-    margin: auto;
-
+    flex-direction: column;
     h1 {
-      align-content: center;
+      margin: 0 auto;
+
       font-size: 15vh;
     }
   }
 
   .Closing {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+
     h1 {
-      font-size: 5vh;
+      margin: auto;
+
+      font-size: 80px;
     }
   }
 }

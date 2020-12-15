@@ -57,12 +57,12 @@ export default function ClosingTime({ bar }) {
   });
   return (
     <>
-      {timeLeft.timeDiffHrs > 0 && timeLeft.timeDiffHrs < 14 ? (
+      {timeLeft.timeDiffHrs >= 0 && timeLeft.timeDiffHrs < 14 ? (
         <>
-          <h3>Closing in</h3> <h1>{timeLeft.timeDiff} </h1>
+          <h3>Closing in:</h3> <h1>{timeLeft.timeDiff} </h1>
         </>
       ) : (
-        <h2>closed</h2>
+        <h1>CLOSED</h1>
       )}
     </>
   );

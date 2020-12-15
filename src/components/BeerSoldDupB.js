@@ -15,25 +15,23 @@ export default function BeerSoldDupB({ serving, storage, postSold, getSold }) {
     return newArr;
   }
   useEffect(() => {
-    if (serving[serving.length - 1].id === undefined) {
-      console.log("broken");
-      console.log(serving);
-    }
-    if (serving[serving.length - 1].id !== undefined) {
-      if (served[served.length - 1].id !== serving[serving.length - 1].id) {
-        console.log(serving[serving.length - 1]);
-        setServed([...served, serving[serving.length - 1]]);
-        serving[serving.length - 1].order.map((orderBeer) => {
-          const beerId = arr
-            .map((beer) => {
-              return beer.beer;
-            })
-            .indexOf(orderBeer);
-          const newState = [...arr];
-          newState[beerId].counter = arr[beerId].counter + 1;
-          setArr(newState);
-          return arr;
-        });
+    if (serving.length !== 0) {
+      if (serving[serving.length - 1].id !== undefined) {
+        if (served[served.length - 1].id !== serving[serving.length - 1].id) {
+          console.log(serving[serving.length - 1]);
+          setServed([...served, serving[serving.length - 1]]);
+          serving[serving.length - 1].order.map((orderBeer) => {
+            const beerId = arr
+              .map((beer) => {
+                return beer.beer;
+              })
+              .indexOf(orderBeer);
+            const newState = [...arr];
+            newState[beerId].counter = arr[beerId].counter + 1;
+            setArr(newState);
+            return arr;
+          });
+        }
       }
     }
   }, [served, serving, arr]);
@@ -227,11 +225,12 @@ export default function BeerSoldDupB({ serving, storage, postSold, getSold }) {
         },
       ],
     },
+    maintainAspectRatio: false,
+    responsive: true,
   };
   return (
-    <div>
-      <Bar className="Graph" data={data} options={options} />
-      <button onClick={clicked}></button>
+    <div className="Graph" style={{ padding: "1rem 2rem" }}>
+      <Bar data={data} options={options} />
     </div>
   );
 }
