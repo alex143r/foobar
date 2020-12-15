@@ -4,9 +4,10 @@ import { get } from "./modules/rest";
 
 import Storage from "./components/Storage";
 import QueueHistoryData from "./components/QueueHistoryData";
+import QueueByHour from "./components/QueueByHour";
 
 import "./App.scss";
-import QueueHistory from "./components/QueueHistory";
+//import QueueHistory from "./components/QueueHistory";
 
 function App() {
   const [facts, setFacts] = useState([]);
@@ -30,6 +31,7 @@ function App() {
         serving={facts.serving}
         tick={tick}
       />
+      <QueueByHour />
     </div>
   );
 }
