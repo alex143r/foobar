@@ -13,46 +13,26 @@ export default function Main({ facts, postSold, getSold }) {
   return (
     <section className="Main">
       <div className="QueueNr">
-        {facts.length === undefined ? (
-          <QueueNr queue={facts.queue}></QueueNr>
-        ) : (
-          <h1>no</h1>
-        )}
+        <QueueNr queue={facts.queue}></QueueNr>
       </div>
 
       <div className="Graph">
-        {facts.length === undefined ? (
-          <BeerSoldDupB
-            getSold={getSold}
-            postSold={postSold}
-            serving={facts.serving}
-            storage={facts.storage}
-          ></BeerSoldDupB>
-        ) : (
-          <h1>no</h1>
-        )}
+        <BeerSoldDupB
+          getSold={getSold}
+          postSold={postSold}
+          serving={facts.serving}
+          storage={facts.storage}
+        ></BeerSoldDupB>
       </div>
       <div className="Bartenders">
-        {facts.length === undefined ? (
-          <Bartenders bartenders={facts.bartenders}></Bartenders>
-        ) : (
-          <h1>no</h1>
-        )}
+        <Bartenders bartenders={facts.bartenders}></Bartenders>
       </div>
 
       <div className="Sold">
-        {facts.length === undefined ? (
-          <BeerSold serving={facts.serving}></BeerSold>
-        ) : (
-          <h1>no</h1>
-        )}
+        <BeerSold serving={facts.serving}></BeerSold>
       </div>
       <div className="Closing">
-        {facts.length === undefined ? (
-          <ClosingTime bar={facts.bar}></ClosingTime>
-        ) : (
-          <h1>.-.</h1>
-        )}
+        <ClosingTime bar={facts.bar}></ClosingTime>
       </div>
     </section>
   );
