@@ -96,7 +96,7 @@ export default function ListContainer({ storage, taps }) {
             setSortDirection(userInput[1]);
           }}
         >
-          <option>Sort:</option>
+          <option>Sorter:</option>
           <option value="name asc">Navn (a-z)</option>
           <option value="name desc">Navn (z-a)</option>
           <option value="amount asc">Lager (lav-høj)</option>
