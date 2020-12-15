@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { get } from "./modules/rest";
+import { get, postSold, getSold } from "./modules/rest";
 
 import Main from "./components/Main";
 import "./App.scss";
@@ -17,7 +17,11 @@ function App() {
 
   return (
     <div className="App">
-      {facts.length === undefined ? <Main facts={facts}> </Main> : <h1>--</h1>}
+      {facts.length === undefined ? (
+        <Main facts={facts} postSold={postSold} getSold={getSold}></Main>
+      ) : (
+        <h1>--</h1>
+      )}
     </div>
   );
 }

@@ -50,7 +50,7 @@ export default function BeerSoldDupB({ serving, storage }) {
           })
           .indexOf(beer);
 
-        sold[beerId].counter = sold[beerId].counter + 1;
+        // sold[beerId].counter = sold[beerId].counter + 1;
         return sold;
         //  sold[newBeerId].counter++;
 

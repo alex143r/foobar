@@ -36,7 +36,6 @@ export default function Bartenders({ bartenders }) {
           ) {
             //https://stackoverflow.com/questions/39889009/replace-object-in-array-on-react-state
             let newArr = [...workers];
-            console.log(bartender.servingCustomer);
             newArr[nameId].servingCustomer = [
               ...newArr[nameId].servingCustomer,
               bartender.servingCustomer,
@@ -47,21 +46,20 @@ export default function Bartenders({ bartenders }) {
       });
     });
   }
-  console.log(workers);
 
   return (
     <div className="Bartenders" key={1}>
       <div>
         <h2>Name</h2>
-        {bartenders.map((bartender) => {
-          return <p> {bartender.name}</p>;
+        {bartenders.map((bartender, i) => {
+          return <p key={i}> {bartender.name}</p>;
         })}
       </div>
       <div>
         <h2>Serving</h2>
-        {bartenders.map((bartender) => {
+        {bartenders.map((bartender, i) => {
           return (
-            <p>
+            <p key={i}>
               {bartender.servingCustomer !== null
                 ? "#" + bartender.servingCustomer
                 : "-"}
@@ -71,14 +69,14 @@ export default function Bartenders({ bartenders }) {
       </div>
       <div>
         <h2>Status</h2>
-        {bartenders.map((bartender) => {
-          return <p> {bartender.status.toLowerCase()}</p>;
+        {bartenders.map((bartender, i) => {
+          return <p key={i}> {bartender.status.toLowerCase()}</p>;
         })}
       </div>
       <div>
         <h2>Expedited</h2>
-        {workers.map((worker) => {
-          return <p>{worker.servingCustomer.length}</p>;
+        {workers.map((worker, i) => {
+          return <p key={i}>{worker.servingCustomer.length}</p>;
         })}
       </div>
     </div>

@@ -10,9 +10,7 @@ import BeerSold from "./BeerSold";
 import BeerStats from "./BeerStats";
 import BeerGraph from "./BeerGraph";
 
-export default function Main({ facts }) {
-  //console.log(beers);
-
+export default function Main({ facts, postSold, getSold }) {
   return (
     <section className="Main">
       <div className="QueueNr">
@@ -26,6 +24,8 @@ export default function Main({ facts }) {
       <div className="Graph">
         {facts.length === undefined ? (
           <BeerSoldDupB
+            getSold={getSold}
+            postSold={postSold}
             serving={facts.serving}
             storage={facts.storage}
           ></BeerSoldDupB>

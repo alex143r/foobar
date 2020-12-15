@@ -39,7 +39,6 @@ export default function ClosingTime({ bar }) {
       return number;
     }
   }
-  console.log(timeDiffHrs);
   return (
     <>
       {timeDiffHrs > 0 && timeDiffHrs < 14 ? (
