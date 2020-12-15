@@ -164,7 +164,10 @@ $breakpoint-desktop: 1000px;
   .storage-section {
     margin: 2rem;
 
-    h1,
+    h1 {
+      text-align: left;
+    }
+
     h2,
     h3 {
       text-align: center;

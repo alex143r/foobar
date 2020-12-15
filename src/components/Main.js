@@ -16,17 +16,17 @@ export default function Main({ facts, postSold, getSold }) {
         <QueueNr queue={facts.queue}></QueueNr>
       </div>
 
-      <div className="Graph">
+      <>
         <BeerSoldDupB
           getSold={getSold}
           postSold={postSold}
           serving={facts.serving}
           storage={facts.storage}
         ></BeerSoldDupB>
-      </div>
-      <div className="Bartenders">
+      </>
+      <>
         <Bartenders bartenders={facts.bartenders}></Bartenders>
-      </div>
+      </>
 
       <div className="Sold">
         <BeerSold serving={facts.serving}></BeerSold>

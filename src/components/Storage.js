@@ -7,11 +7,7 @@ export default function Storage({ taps, storage }) {
   return (
     <section className="storage-section">
       <h1>Storage</h1>
-      {storage !== undefined ? (
-        <ListContainer storage={storage} taps={taps} />
-      ) : (
-        "Loading"
-      )}
+      <ListContainer storage={storage} taps={taps} />
     </section>
   );
 }
