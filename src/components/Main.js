@@ -3,7 +3,6 @@ import ClosingTime from "./ClosingTime";
 import QueueNr from "./QueueNr";
 import Bartenders from "./Bartenders";
 import BeerSold2 from "./BeerSold2";
-import QueueHistory from "./QueueHistory";
 import BeerSoldDup from "./BeerSoldDup";
 import BeerSoldDupB from "./BeerSoldDupB";
 import BeerSold from "./BeerSold";
@@ -49,7 +48,11 @@ export default function Main({ facts, postSold, getSold }) {
         )}
       </div>
       <div className="Closing">
-        <ClosingTime bar={facts.bar}></ClosingTime>
+        {facts.length === undefined ? (
+          <ClosingTime bar={facts.bar}></ClosingTime>
+        ) : (
+          <h1>.-.</h1>
+        )}
       </div>
     </section>
   );

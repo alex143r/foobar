@@ -17,11 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      {facts.length === undefined ? (
-        <Main facts={facts} postSold={postSold} getSold={getSold}></Main>
-      ) : (
-        <h1>--</h1>
-      )}
+      <Main facts={facts} postSold={postSold} getSold={getSold}></Main>
     </div>
   );
 }
