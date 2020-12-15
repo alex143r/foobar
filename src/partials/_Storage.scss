@@ -1,148 +1,208 @@
 @import "/vars";
 
-ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 20px;
-  width: 90%;
-  padding: 0;
-  margin: auto;
-}
+$sectionMargin: 0rem;
+$listItemMin: 285px;
+$gridGap: 15px;
 
-li {
-  list-style: none;
-  background-color: $secondaryWhite;
-  //border: 2px solid rgba(0, 0, 0, 0.25);
-  border-radius: 25px;
-  max-width: 250px;
-  min-width: 200px;
-  min-height: 250px;
-  padding: 1rem 1.5rem;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  transition: all 0.5s;
-  margin: auto;
-  h2 {
-    text-align: center;
-  }
-  h3 {
-    text-align: center;
-  }
-  progress {
-    height: 30px;
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid $primaryBlack;
-    //border: 1px solid rgba(0, 0, 0, 0.25);
-    border-radius: 6px;
-    //transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.25s;
-    margin: 0.2rem 0 1rem 0;
-  }
+$buttonWidth: 100px;
+$buttonHeight: 40px;
 
-  progress::-webkit-progress-bar {
-    background-color: #fff;
-    border-radius: 5px;
-    transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
-  }
+.beholdning {
+  margin: $sectionMargin;
 
-  progress::-webkit-progress-value {
-    background-color: $primaryBlue;
-    border-radius: 5px;
-    transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
-  }
-
-  progress::-moz-progress-bar {
-    background-color: $primaryBlue;
-    border-radius: 5px;
-    transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
-  }
-
-  display: grid;
-  grid-template-rows: 1fr 2.5fr 1fr;
-}
-
-.amount-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-
-  .amount-background {
-    width: 40px;
-    height: 40px;
-    //background-color: $secondaryGreen;
-    //background-color: #e8ae2a;
-    //background-color: $secondaryRed;
-    border-radius: 5px;
-    //border: darken($secondaryGreen, 30%) 1px solid;
+  nav {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
   }
 
-  .amount-background-green {
-    background-color: $secondaryGreen;
-    border: darken($secondaryGreen, 30%) 1px solid;
+  nav > * {
+    margin: 0.1rem;
   }
-  .amount-background-red {
-    background-color: $secondaryRed;
-    border: darken($secondaryRed, 30%) 1px solid;
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($listItemMin, 1fr));
+    grid-gap: $gridGap;
+    margin: auto;
+    padding: 1rem;
   }
-  .amount-background-orange {
-    background-color: #e8ae2a;
-    border: darken(#e8ae2a, 30%) 1px solid;
+
+  li {
+    list-style: none;
+    background-color: $secondaryWhite;
+    border-radius: 25px;
+    padding: 1rem 1.5rem;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    display: grid;
+    grid-template-areas:
+      "name name amount"
+      "progress progress progress";
+    grid-template-rows: 50px auto;
+
+    .list-item-header {
+      grid-area: name;
+    }
+    .amount-container {
+      grid-area: amount;
+      display: flex;
+      justify-content: flex-end;
+      //align-items: baseline;
+
+      .amount-background {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .amount-container > h3 {
+      //display: none;
+      visibility: hidden;
+    }
+    .progress-container {
+      grid-area: progress;
+    }
+
+    progress {
+      height: 20px;
+      width: 100%;
+      background-color: #fff;
+      border: 1px solid $primaryBlack;
+      border-radius: 6px;
+      margin: 0.2rem 0 1rem 0;
+    }
+
+    progress::-webkit-progress-bar {
+      background-color: #fff;
+      border-radius: 5px;
+      transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+    }
+
+    progress::-webkit-progress-value {
+      background-color: $primaryBlue;
+      border-radius: 5px;
+      transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+    }
+
+    progress::-moz-progress-bar {
+      background-color: $primaryBlue;
+      border-radius: 5px;
+      transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+    }
   }
 }
 
-// .button-active {
-//   background-color: $primaryBlue; /* Green */
-//   border: none;
-//   border-radius: 5px;
-//   color: white;
-//   padding: 15px 32px;
-//   text-align: center;
-//   text-decoration: none;
-//   display: inline-block;
-//   font-size: 16px;
-//   margin: 4px 2px;
-//   cursor: pointer;
-// }
+//amount classes der tilføjes efter state:
+.amount-background-green {
+  background-color: $secondaryGreen;
+  border: darken($secondaryGreen, 30%) 1px solid;
+}
+.amount-background-red {
+  background-color: $secondaryRed;
+  border: darken($secondaryRed, 30%) 1px solid;
+}
+.amount-background-orange {
+  background-color: #e8ae2a;
+  border: darken(#e8ae2a, 30%) 1px solid;
+}
 
+//Filter button generel styling
+button {
+  cursor: pointer;
+  width: $buttonWidth;
+  height: $buttonHeight;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+}
+
+//Filter button - classes afhængig af state
 .button-active {
-  opacity: 1;
   background-color: $primaryBlue;
   box-shadow: inset -4px -4px 8px rgba(99, 139, 174, 1),
     inset 1px 1px 20px rgba(0, 0, 0, 0.5);
-  border: none;
-  border-radius: 5px;
   color: $secondaryWhite;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
 }
-
 .button-default {
   background-color: $secondaryWhite; /* Green */
   border: $primaryBlue solid 1px;
   border-radius: 5px;
   color: $primaryBlue;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
 }
 
 select {
   color: $primaryBlue;
-  padding: 10px 20px;
+  padding: 10px;
   border-radius: 5px;
   border: $primaryBlue solid 1px;
   -moz-appearance: none;
   -webkit-appearance: none;
-  text-align: center;
+  text-align: left;
+  width: 125px;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+}
+//Trekant, dropdown: link: https://moderncss.dev/custom-select-styles-with-pure-css/
+nav::after {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: $primaryBlue;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  transform: translateX(-20px);
+}
+
+$breakpoint-desktop: 1000px;
+@media (min-width: $breakpoint-desktop) {
+  .beholdning {
+    margin: 2rem;
+
+    h1,
+    h2,
+    h3 {
+      text-align: center;
+    }
+
+    nav {
+      justify-content: flex-end;
+    }
+
+    ul {
+      grid-gap: 50px;
+    }
+    li {
+      grid-gap: 10px;
+      grid-template-areas:
+        "name"
+        "progress"
+        "amount";
+      min-height: 180px;
+    }
+
+    li .amount-container {
+      align-self: end;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    li .amount-container > h3 {
+      visibility: visible;
+    }
+
+    li .amount-container .amount-background {
+      width: 40px;
+      height: 40px;
+    }
+
+    li progress {
+      height: 30px;
+    }
+  }
 }
