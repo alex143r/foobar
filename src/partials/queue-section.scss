@@ -1,0 +1,77 @@
+@import "/vars";
+
+.queue-section {
+  .queue-grid {
+    justify-content: center;
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+      "number"
+      "chart";
+  }
+
+  .QueueNr {
+    grid-area: number;
+    align-items: center;
+    margin: 3rem;
+
+    h3 {
+      margin: 50px 0 0 20px;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      h1 {
+        font-size: 30vh;
+      }
+    }
+
+    .arrowUp {
+      width: 0;
+      height: 0;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+
+      border-bottom: 50px solid red;
+      margin-top: 100px;
+      transition: 1s;
+    }
+
+    .arrowDown {
+      width: 0;
+      height: 0;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      margin-top: 100px;
+      transition: 1s;
+
+      border-top: 50px solid green;
+    }
+  }
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  button {
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: $secondaryWhite;
+    border: $primaryBlue solid 1px;
+    color: $primaryBlue;
+  }
+}
+
+$breakpoint-desktop: 800px;
+@media (min-width: $breakpoint-desktop) {
+  .queue-section {
+    margin: 2rem;
+    .queue-grid {
+      display: grid;
+      grid-template-areas: "number chart chart";
+    }
+  }
+}

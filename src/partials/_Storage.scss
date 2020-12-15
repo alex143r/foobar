@@ -7,7 +7,7 @@ $gridGap: 15px;
 $buttonWidth: 100px;
 $buttonHeight: 40px;
 
-.beholdning {
+.storage-section {
   margin: $sectionMargin;
 
   nav {
@@ -161,10 +161,13 @@ nav::after {
 
 $breakpoint-desktop: 1000px;
 @media (min-width: $breakpoint-desktop) {
-  .beholdning {
+  .storage-section {
     margin: 2rem;
 
-    h1,
+    h1 {
+      text-align: left;
+    }
+
     h2,
     h3 {
       text-align: center;

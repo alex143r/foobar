@@ -6,13 +6,5 @@ export default function QueueHistoryData({ queue, time, serving, tick }) {
   //console.log("Time: ", time);
   //console.log("Serving: ", serving);
 
-  return (
-    <>
-      {queue !== undefined ? (
-        <QueueHistory tick={tick} queue={queue} serving={serving} />
-      ) : (
-        "Loading"
-      )}
-    </>
-  );
+  return <QueueHistory tick={tick} queue={queue} serving={serving} />;
 }

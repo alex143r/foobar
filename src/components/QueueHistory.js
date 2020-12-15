@@ -78,6 +78,8 @@ export default function QueueHistory({ queue, tick }) {
       text: `${queueLength[queueLength.length - 1]} personer i kø nu`,
       lineHeight: "2",
     },
+    maintainAspectRation: false,
+    responsive: true,
     scales: {
       yAxes: [
         {
