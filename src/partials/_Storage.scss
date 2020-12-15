@@ -1,0 +1,208 @@
+@import "/vars";
+
+$sectionMargin: 0rem;
+$listItemMin: 285px;
+$gridGap: 15px;
+
+$buttonWidth: 100px;
+$buttonHeight: 40px;
+
+.beholdning {
+  margin: $sectionMargin;
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+
+  nav > * {
+    margin: 0.1rem;
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($listItemMin, 1fr));
+    grid-gap: $gridGap;
+    margin: auto;
+    padding: 1rem;
+  }
+
+  li {
+    list-style: none;
+    background-color: $secondaryWhite;
+    border-radius: 25px;
+    padding: 1rem 1.5rem;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    display: grid;
+    grid-template-areas:
+      "name name amount"
+      "progress progress progress";
+    grid-template-rows: 50px auto;
+
+    .list-item-header {
+      grid-area: name;
+    }
+    .amount-container {
+      grid-area: amount;
+      display: flex;
+      justify-content: flex-end;
+      //align-items: baseline;
+
+      .amount-background {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .amount-container > h3 {
+      //display: none;
+      visibility: hidden;
+    }
+    .progress-container {
+      grid-area: progress;
+    }
+
+    progress {
+      height: 20px;
+      width: 100%;
+      background-color: #fff;
+      border: 1px solid $primaryBlack;
+      border-radius: 6px;
+      margin: 0.2rem 0 1rem 0;
+    }
+
+    progress::-webkit-progress-bar {
+      background-color: #fff;
+      border-radius: 5px;
+      transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+    }
+
+    progress::-webkit-progress-value {
+      background-color: $primaryBlue;
+      border-radius: 5px;
+      transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+    }
+
+    progress::-moz-progress-bar {
+      background-color: $primaryBlue;
+      border-radius: 5px;
+      transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+    }
+  }
+}
+
+//amount classes der tilføjes efter state:
+.amount-background-green {
+  background-color: $secondaryGreen;
+  border: darken($secondaryGreen, 30%) 1px solid;
+}
+.amount-background-red {
+  background-color: $secondaryRed;
+  border: darken($secondaryRed, 30%) 1px solid;
+}
+.amount-background-orange {
+  background-color: #e8ae2a;
+  border: darken(#e8ae2a, 30%) 1px solid;
+}
+
+//Filter button generel styling
+button {
+  cursor: pointer;
+  width: $buttonWidth;
+  height: $buttonHeight;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+}
+
+//Filter button - classes afhængig af state
+.button-active {
+  background-color: $primaryBlue;
+  box-shadow: inset -4px -4px 8px rgba(99, 139, 174, 1),
+    inset 1px 1px 20px rgba(0, 0, 0, 0.5);
+  color: $secondaryWhite;
+}
+.button-default {
+  background-color: $secondaryWhite; /* Green */
+  border: $primaryBlue solid 1px;
+  border-radius: 5px;
+  color: $primaryBlue;
+}
+
+select {
+  color: $primaryBlue;
+  padding: 10px;
+  border-radius: 5px;
+  border: $primaryBlue solid 1px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  text-align: left;
+  width: 125px;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+}
+//Trekant, dropdown: link: https://moderncss.dev/custom-select-styles-with-pure-css/
+nav::after {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: $primaryBlue;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  transform: translateX(-20px);
+}
+
+$breakpoint-desktop: 1000px;
+@media (min-width: $breakpoint-desktop) {
+  .beholdning {
+    margin: 2rem;
+
+    h1,
+    h2,
+    h3 {
+      text-align: center;
+    }
+
+    nav {
+      justify-content: flex-end;
+    }
+
+    ul {
+      grid-gap: 50px;
+    }
+    li {
+      grid-gap: 10px;
+      grid-template-areas:
+        "name"
+        "progress"
+        "amount";
+      min-height: 180px;
+    }
+
+    li .amount-container {
+      align-self: end;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    li .amount-container > h3 {
+      visibility: visible;
+    }
+
+    li .amount-container .amount-background {
+      width: 40px;
+      height: 40px;
+    }
+
+    li progress {
+      height: 30px;
+    }
+  }
+}
