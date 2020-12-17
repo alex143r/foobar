@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { get, postSold, getSold } from "./modules/rest";
+import { get } from "./modules/rest";
 import Storage from "./components/Storage";
-//import QueueHistoryData from "./components/QueueHistoryData";
 import QueueHistory from "./components/QueueHistory";
 import QueueByHour from "./components/QueueByHour";
 import Main from "./components/Main";
 import "./App.scss";
-//import QueueNr from "./components/QueueNr";
 
 function App() {
   const [facts, setFacts] = useState([]);
@@ -22,7 +20,6 @@ function App() {
     }, 2000);
     return () => clearInterval(interval);
   }, []);
-  //console.log(Main);
 
   return (
     <div className="App">
@@ -33,20 +30,6 @@ function App() {
           <Storage storage={facts.storage} taps={facts.taps} />
           <section className="queue-section">
             <h1>Queue</h1>
-            {/* <button
-              onClick={() =>
-                setQueueHistoryGraph(
-                  queueHistoryGraph === "QueueHistory"
-                    ? "QueueByHour"
-                    : "QueueHistory"
-                )
-              }
-            >
-              Show{" "}
-              {queueHistoryGraph === "QueueByHour"
-                ? "Live data"
-                : "Average by hour"}
-            </button> */}
             <div className="chart-btns">
               <button
                 className={
@@ -82,22 +65,12 @@ function App() {
 
             <div className="chart-container">
               {queueHistoryGraph === "QueueHistory" ? (
-                <QueueHistory
-                  queue={facts.queue}
-                  time={facts.timestamp}
-                  serving={facts.serving}
-                  tick={tick}
-                />
+                <QueueHistory queue={facts.queue} tick={tick} />
               ) : queueHistoryGraph === "QueueByHour" ? (
                 <QueueByHour />
               ) : queueHistoryGraph === "both" ? (
                 <>
-                  <QueueHistory
-                    queue={facts.queue}
-                    time={facts.timestamp}
-                    serving={facts.serving}
-                    tick={tick}
-                  />
+                  <QueueHistory queue={facts.queue} tick={tick} />
                   <QueueByHour />
                 </>
               ) : null}

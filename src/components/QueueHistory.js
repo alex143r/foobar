@@ -34,7 +34,6 @@ export default function QueueHistory({ queue, tick }) {
         };
 
         const postData = JSON.stringify(data);
-        console.log(postData);
 
         fetch(
           "https://foobar-edfd.restdb.io/rest/foobar-queue?h={%22$groupby%22:[%22$HOUR:date%22],%20%22$aggregate%22:%20[%22AVG:length%22]}",
@@ -47,11 +46,9 @@ export default function QueueHistory({ queue, tick }) {
             },
             body: postData,
           }
-        )
-          .then((res) => res.json())
-          .then((data) => console.log(data));
+        );
       }
-      // kald functionen post - som sender data til restdb
+      //kald functionen post - som sender data til restdb
       //udkommenteret, da der er data i databasen til at vise funktionaliteten
       //post(queue);
     }

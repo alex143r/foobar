@@ -10,6 +10,9 @@ $buttonHeight: 40px;
 .storage-section {
   margin: $sectionMargin;
 
+  h1 {
+    padding: 1rem;
+  }
   nav {
     display: flex;
     align-items: center;
