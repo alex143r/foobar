@@ -29,7 +29,7 @@ function App() {
       <h1 id="title">FooBar - Dashboard</h1>
       {facts.length !== 0 ? (
         <>
-          <Main facts={facts} postSold={postSold} getSold={getSold}></Main>
+          <Main facts={facts}></Main>
           <Storage storage={facts.storage} taps={facts.taps} />
           <section className="queue-section">
             <h1>Queue</h1>
