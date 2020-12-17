@@ -75,8 +75,9 @@ export default function QueueHistory({ queue, tick }) {
   const options = {
     title: {
       display: true,
-      text: `${queueLength[queueLength.length - 1]} personer i kø nu`,
+      text: `Live Queue Data (${queueLength[queueLength.length - 1]})`,
       lineHeight: "2",
+      fontSize: 20,
     },
     maintainAspectRation: false,
     responsive: true,

@@ -55,6 +55,7 @@ export default function QueueByHour() {
       display: true,
       text: `Queue by hour`,
       lineHeight: "2",
+      fontSize: 20,
     },
     scales: {
       yAxes: [
