@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 export default function QueueByHour() {
   const [queueAverage, setQueueAverage] = useState([]);
   const [hour, setHour] = useState([]);
-  const [fullData, setFullData] = useState([]);
-
-  //const [interval, setInterval] = [];
 
   const url =
     "https://foobar-edfd.restdb.io/rest/foobar-queue?h={%22$groupby%22:[%22$HOUR:date%22],%20%22$aggregate%22:%20[%22AVG:length%22]}";
@@ -24,21 +21,15 @@ export default function QueueByHour() {
       })
         .then((e) => e.json())
         .then((data) => {
-          //setQueueAverage([e]);
           handleData(data);
-          //console.log("DATA???", data);
         });
     }
-    console.log("HELLO");
     fetchData();
   }, []);
 
   function handleData(data) {
-    console.log("handleData", data);
-
     for (const property in data) {
-      //console.log(data, property);
-      //console.log(`${property}: ${data[property]["AVG length"]}`);
+      console.log(`${property}: ${data[property]["AVG length"]}`);
       setQueueAverage((queueAverage) =>
         queueAverage.concat(data[property]["AVG length"].toFixed(2))
       );
@@ -46,22 +37,13 @@ export default function QueueByHour() {
     }
   }
 
-  console.log(queueAverage, "STATE", hour);
-
-  //const filteredByHour = hour.filter((hour) => hour >= 12 && hour <= 22);
-  //console.log(filteredByHour);
-
-  //const findIndexStart = hour.findIndex((hour) => hour == 12);
-  //const findIndexEnd = hour.findIndex((hour) => hour == 22);
-  //console.log(findIndexStart, findIndexEnd, "index");
-
   const data = {
     labels: hour,
     datasets: [
       {
-        label: "Kø-gennemsnit pr. time",
+        label: "Average by hour",
         data: queueAverage,
-        backgroundColor: ["rgba(99, 139, 174, 0.2)"],
+        backgroundColor: "rgba(99, 139, 174, 1)",
         borderColor: ["#638bae"],
         borderWidth: 1,
       },
@@ -71,7 +53,7 @@ export default function QueueByHour() {
   const options = {
     title: {
       display: true,
-      text: `INDSÆT TEXT HER`,
+      text: `Queue by hour`,
       lineHeight: "2",
     },
     scales: {
@@ -91,43 +73,7 @@ export default function QueueByHour() {
 
   return (
     <>
-      {/* <button
-        onClick={() => {
-          setHour((hour) => {
-            hour.slice(hour.indexOf("17"), hour.indexOf("21"));
-            console.log(hour);
-          });
-          setQueueAverage((queueAverage) => {
-            queueAverage.slice(
-              queueAverage.indexOf("17"),
-              queueAverage.indexOf("21")
-            );
-          });
-        }}
-      >
-        Interval
-      </button> */}
-      <Line data={data} options={options} />
       <Bar data={data} options={options} />
     </>
   );
 }
-
-// fetch data fra restdb: https://foobar-edfd.restdb.io/rest/foobar-queue?h={%22$groupby%22:[%22$HOUR:date%22],%20%22$aggregate%22:%20[%22AVG:length%22]}
-// api-key
-
-// function fetchData() {
-//   fetch(
-//     "https://foobar-edfd.restdb.io/rest/foobar-queue?h={%22$groupby%22:[%22$HOUR:date%22],%20%22$aggregate%22:%20[%22AVG:length%22]}"
-//   )
-//     .then((res) => res.json)
-//     .then((data) => console.log(data));
-// }
-
-//console.log("QueueByHour Running");
-
-// Hvornår skal den fetche data? Evt når siden loader:
-
-//ikke behov for live opdatering i dette tilfælde?
-
-// Bar-chart
