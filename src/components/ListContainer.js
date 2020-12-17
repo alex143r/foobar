@@ -114,7 +114,7 @@ export default function ListContainer({ storage, taps }) {
                 {beer.taps.length > 0 ? (
                   <TapLevel taps={beer.taps} />
                 ) : (
-                  <h3>Ikke på tap</h3>
+                  <h3>Not on tap</h3>
                 )}
               </div>
               <StorageAmount className="storage-amount" amount={beer.amount} />
