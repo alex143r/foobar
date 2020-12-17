@@ -7,13 +7,15 @@ import QueueByHour from "./components/QueueByHour";
 import Main from "./components/Main";
 import "./App.scss";
 
+import { Oval } from "svg-loaders-react";
+
 function App() {
   const [facts, setFacts] = useState([]);
   const [tick, setTick] = useState(0);
   const [queueHistoryGraph, setQueueHistoryGraph] = useState("both");
 
   useEffect(() => {
-    get(setFacts);
+    //get(setFacts);
     const interval = setInterval(() => {
       get(setFacts);
       setTick((tick) => tick + 1);
@@ -78,7 +80,12 @@ function App() {
           </section>
         </>
       ) : (
-        <h1>no</h1>
+        <Oval
+          stroke="#638bae"
+          width="100"
+          height="100"
+          style={{ width: "100%" }}
+        />
       )}
     </div>
   );
