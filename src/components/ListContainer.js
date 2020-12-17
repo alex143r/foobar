@@ -77,13 +77,13 @@ export default function ListContainer({ storage, taps }) {
           className={filter === true ? "button-active" : "button-default"}
           onClick={() => setFilter(filter === true ? "all" : true)}
         >
-          Aktive
+          On Tap
         </button>
         <button
           className={filter === false ? "button-active" : "button-default"}
           onClick={() => setFilter(filter === false ? "all" : false)}
         >
-          Passive
+          Not on tap
         </button>
         <select
           sorting={filteredList}
@@ -96,13 +96,13 @@ export default function ListContainer({ storage, taps }) {
             setSortDirection(userInput[1]);
           }}
         >
-          <option>Sorter:</option>
-          <option value="name asc">Navn (a-z)</option>
-          <option value="name desc">Navn (z-a)</option>
-          <option value="amount asc">Lager (lav-høj)</option>
-          <option value="amount desc">Lager (høj-lav)</option>
-          <option value="length asc">Aktive taps (lav-høj)</option>
-          <option value="length desc">Aktive taps (høj-lav)</option>
+          <option>Sort:</option>
+          <option value="name asc">Name (a-z)</option>
+          <option value="name desc">Name (z-a)</option>
+          <option value="amount asc">Storage (low-high)</option>
+          <option value="amount desc">Storage (high-low)</option>
+          <option value="length asc">Number of taps (low-high)</option>
+          <option value="length desc">Number of taps (high-low)</option>
         </select>
       </nav>
       <ul>
