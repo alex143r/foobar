@@ -27,12 +27,11 @@ export default function QueueHistory({ queue, tick }) {
         const data = {
           length: queue.length,
           date: new Date(Date.now())
-            .toString() // ""
-            .split(" ") // ["",""]
-            [4] // [12:43:21]
-            .substring(0, 5), // 12:43
+            .toString() // output - Tue Dec 08 2020 11:30:32
+            .split(" ") //output - [ “Tue”, “Dec”, “08”, “2020” , “11:30:32” ]
+            [4] // output - [11:30:32]
+            .substring(0, 5), // output - 11:30
         };
-        console.log("POST data object", data);
 
         const postData = JSON.stringify(data);
         console.log(postData);
@@ -56,6 +55,7 @@ export default function QueueHistory({ queue, tick }) {
       //udkommenteret, da der er data i databasen til at vise funktionaliteten
       //post(queue);
     }
+    // eslint-disable-next-line
   }, [tick]);
 
   //data og options objects bruges til at bygge chart vha. chartjs
@@ -75,8 +75,9 @@ export default function QueueHistory({ queue, tick }) {
   const options = {
     title: {
       display: true,
-      text: `${queueLength[queueLength.length - 1]} personer i kø nu`,
+      text: `Live Queue Data (${queueLength[queueLength.length - 1]})`,
       lineHeight: "2",
+      fontSize: 20,
     },
     maintainAspectRation: false,
     responsive: true,

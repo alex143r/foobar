@@ -43,6 +43,7 @@ export default function ListContainer({ storage, taps }) {
 
   prepareObjects(storage);
 
+  //Variable, der bruges til at filtrere og sortere den oprindelige data
   let filteredList = fullDataArray;
 
   //Tilpasser filteredList til staten af filter
@@ -77,13 +78,13 @@ export default function ListContainer({ storage, taps }) {
           className={filter === true ? "button-active" : "button-default"}
           onClick={() => setFilter(filter === true ? "all" : true)}
         >
-          Aktive
+          On Tap
         </button>
         <button
           className={filter === false ? "button-active" : "button-default"}
           onClick={() => setFilter(filter === false ? "all" : false)}
         >
-          Passive
+          Not on tap
         </button>
         <select
           sorting={filteredList}
@@ -96,25 +97,28 @@ export default function ListContainer({ storage, taps }) {
             setSortDirection(userInput[1]);
           }}
         >
-          <option>Sorter:</option>
-          <option value="name asc">Navn (a-z)</option>
-          <option value="name desc">Navn (z-a)</option>
-          <option value="amount asc">Lager (lav-høj)</option>
-          <option value="amount desc">Lager (høj-lav)</option>
-          <option value="length asc">Aktive taps (lav-høj)</option>
-          <option value="length desc">Aktive taps (høj-lav)</option>
+          <option>Sort:</option>
+          <option value="name asc">Name (a-z)</option>
+          <option value="name desc">Name (z-a)</option>
+          <option value="amount asc">Storage (low-high)</option>
+          <option value="amount desc">Storage (high-low)</option>
+          <option value="length asc">Number of taps (low-high)</option>
+          <option value="length desc">Number of taps (high-low)</option>
         </select>
       </nav>
       <ul>
         {filteredList.map((beer) => {
           return (
-            <li key={beer.name}>
+            <li
+              key={beer.name}
+              style={beer.amount === 0 ? { opacity: 0.4 } : { opacity: 1 }}
+            >
               <h2 className="list-item-header">{beer.name}</h2>
               <div className="progress-container">
                 {beer.taps.length > 0 ? (
                   <TapLevel taps={beer.taps} />
                 ) : (
-                  <h3>Ikke på tap</h3>
+                  <h3>Not on tap</h3>
                 )}
               </div>
               <StorageAmount className="storage-amount" amount={beer.amount} />
