@@ -5,22 +5,16 @@ export default function ClosingTime({ bar }) {
 
   function calculateTimeLeft() {
     let timeDiff;
-
     const time = new Date();
     let closingTime = bar.closingTime;
-
     let timeDiffHrs = checkLength(
       closingTime.split(":")[0] - time.getHours() - 1
     );
-
     let timeDiffMin = closingTime.split(":")[1] - time.getMinutes();
-
     if (timeDiffMin < 0) {
       timeDiffMin = 60 - -timeDiffMin;
     }
-
     let timeDiffSec = closingTime.split(":")[2] - time.getSeconds();
-
     if (timeDiffSec < 0) {
       timeDiffSec = 60 - -timeDiffSec;
     }
@@ -28,11 +22,7 @@ export default function ClosingTime({ bar }) {
     timeDiffMin = checkLength(timeDiffMin);
     timeDiffSec = checkLength(timeDiffSec);
 
-    if (timeDiffHrs < 0 || timeDiffHrs > 7) {
-      timeDiff = "closed";
-    } else {
-      timeDiff = timeDiffHrs + ":" + timeDiffMin + ":" + timeDiffSec;
-    }
+    timeDiff = timeDiffHrs + ":" + timeDiffMin + ":" + timeDiffSec;
 
     function checkLength(number) {
       if (number.toString().length < 2) {
@@ -57,7 +47,7 @@ export default function ClosingTime({ bar }) {
   });
   return (
     <>
-      {timeLeft.timeDiffHrs >= 0 && timeLeft.timeDiffHrs < 14 ? (
+      {timeLeft.timeDiffHrs >= 0 && timeLeft.timeDiffHrs < 12 ? (
         <>
           <h3>Closing in:</h3> <h1>{timeLeft.timeDiff} </h1>
         </>

@@ -3,6 +3,7 @@
   #title {
     padding: 20px 0 0 20px;
     font-size: 38px;
+    color: $primaryBlue;
   }
 }
 .Main {
@@ -14,7 +15,6 @@
   div {
     box-shadow: none;
     background-color: #ffffff;
-    margin: 2rem;
     box-shadow: 10px 18px 30px rgba(0, 0, 0, 0.04);
     border-radius: 50px;
     height: auto;
@@ -124,15 +124,118 @@
   }
 
   .Closing {
-    padding: 2rem;
     display: flex;
     flex-direction: column;
+    padding: 2em;
+    margin: 0;
 
     h1 {
       margin: auto;
 
-      font-size: 80px;
+      font-size: 5vw;
     }
+  }
+  @media only screen and (max-width: 1090px) {
+    .Bartenders {
+      display: flex;
+    }
+    .QueueNr {
+      div {
+        h1 {
+        }
+
+        .arrowUp {
+          width: 0;
+          height: 0;
+          border-left: 30px solid transparent;
+          border-right: 30px solid transparent;
+
+          border-bottom: 50px solid red;
+          margin-top: 100px;
+          transition: 1s;
+        }
+
+        .arrowDown {
+          width: 0;
+          height: 0;
+          border-left: 30px solid transparent;
+          border-right: 30px solid transparent;
+          margin-top: 100px;
+          transition: 1s;
+
+          border-top: 50px solid green;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 850px) {
+    .Main {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: none;
+    }
+
+    .Closing {
+      h1 {
+        font-size: 10vw;
+      }
+    }
+    div:nth-child(1) {
+      grid-column: span 1;
+      grid-row: 2;
+      margin: 0;
+      padding: 2rem 0.5rem;
+
+      div {
+        div {
+          padding: 0;
+        }
+      }
+      h1 {
+        font-size: 120px;
+      }
+      .arrowDown,
+      .arrowUp {
+        margin-top: 70px;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+      }
+      .arrowUp {
+        border-top: 15px;
+      }
+      .arrowDown {
+        border-bottom: 15px;
+      }
+    }
+    div:nth-child(2) {
+      grid-column: span 10;
+      grid-row: 1;
+    }
+    div:nth-child(3) {
+      grid-row: 2;
+      grid-column: span 2;
+      div {
+        margin: auto;
+        padding: 0 10px 0 0;
+      }
+    }
+    div:nth-child(4) {
+      grid-column: span 1;
+      grid-row: 3/4;
+      margin-top: 2rem;
+    }
+    div:nth-child(5) {
+      grid-column: span 2;
+      grid-row: 3/4;
+      margin: 2rem 2rem 0 2rem;
+    }
+  }
+}
+@media only screen and (max-width: 850px) {
+  .Main {
+    grid-gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 2fr 1fr 1fr;
   }
 }
 
@@ -140,4 +243,57 @@ button {
   width: 50px;
   height: 20px;
   margin: 10px;
+}
+@media only screen and (max-width: 600px) {
+  .Main {
+    grid-gap: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 1em;
+
+    .QueueNr {
+      height: 300px;
+    }
+    .Graph {
+      height: 300px;
+    }
+    div {
+      margin: 1em 0;
+    }
+    div:nth-child(1) {
+      grid-column: span 1;
+      grid-row: 1;
+
+      div {
+        margin: 0;
+      }
+    }
+    div:nth-child(2) {
+      grid-column: span 1;
+      grid-row: 2;
+      margin: 1em 0;
+    }
+    div:nth-child(3) {
+      grid-row: 3;
+      padding: 2em;
+      grid-column: span 1;
+      margin: 0;
+      div {
+        padding: 10px;
+      }
+    }
+    div:nth-child(4) {
+      grid-column: span 1;
+      grid-row: 4;
+      margin: 1em 0;
+    }
+    div:nth-child(5) {
+      grid-column: span 1;
+      grid-row: 5;
+      margin: 1em 0;
+    }
+  }
+}
+@media only screen and (max-width: 1095px) {
 }

@@ -1,53 +1,78 @@
 import React, { useState, useEffect } from "react";
+import { Bar } from "react-chartjs-2";
 
 export default function BeerGraph({ serving, storage }) {
-  const [lager, setLager] = useState([...storage]);
-  const [sold, setSold] = useState([...lager]);
-  const init = false;
+  const [chartX, setChartX] = useState([]);
+  const [chartY, setChartY] = useState([]);
+  const [served, setServed] = useState([...serving]);
+  const [arr, setArr] = useState(initArr);
 
-  /*
-
-  for (let i = 0; i < sold.length; i++) {
-    if (lager[i].amount === sold[i].amount) {
-    }
-    if (lager[i].amount < sold[i].amount) {
-      sold[i].counter = sold[i].amount - lager[i].amount;
-      sold[i].amount = lager[i].amount;
-    }
-    if (lager[i].amount > sold[i].amount) {
-      sold[i].amount = lager[i].amount;
-    }
+  function initArr() {
+    const newArr = storage.map((beer) => ({ beer: beer.name, counter: 0 }));
+    const nextState = storage.map((beer) => beer.name);
+    setChartX(nextState);
+    return newArr;
   }
-  console.log(sold);
-
-  /*if (init === false) {
-    for (let i = 0; i < sold.length; i++) {
-      sold[i].counter = 0;
+  useEffect(() => {
+    if (serving.length > 0) {
+      if (serving[serving.length - 1].id !== undefined) {
+        if (served[served.length - 1].id !== serving[serving.length - 1].id) {
+          setServed([...served, serving[serving.length - 1]]);
+          serving[serving.length - 1].order.map((orderBeer) => {
+            const beerId = arr
+              .map((beer) => {
+                return beer.beer;
+              })
+              .indexOf(orderBeer);
+            const newState = [...arr];
+            newState[beerId].counter = arr[beerId].counter + 1;
+            setArr(newState);
+            return arr;
+          });
+        }
+      }
     }
-    init = true;
-  }*/
-
-  /*for (let i = 0; i < prev.length; i++) {
-    console.log(beer[i]);
-    console.log(prev[i]);
-    beer[i].concat({ counter: 0 });
-    if (beer[i].amount === prev[i].amount) {
-      console.log("=");
-    }
-    if (beer[i].amount > prev[i].amount) {
-      console.log(">");
-    }
-    if (beer[i].amount < prev[i].amount) {
-      console.log("<");
-    }
-  }*/
+  }, [served, serving, arr]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      //setLager(storage);
+      const newState = arr.map((beer) => {
+        return beer.counter;
+      });
+      console.log(newState);
+      console.log(arr);
+      setChartY(newState);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [chartY, arr]);
 
-  return <h1>yo</h1>;
+  const data = {
+    labels: chartX,
+    datasets: [
+      {
+        label: "Beer sold",
+        data: chartY,
+        backgroundColor: "#638bae",
+
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {},
+        },
+      ],
+    },
+    maintainAspectRatio: false,
+    responsive: true,
+  };
+  return (
+    <div className="Graph" style={{ padding: "1rem 2rem" }}>
+      <Bar data={data} options={options} chartY={chartY} />
+    </div>
+  );
 }

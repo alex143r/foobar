@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import ClosingTime from "./ClosingTime";
 import QueueNr from "./QueueNr";
 import Bartenders from "./Bartenders";
-import BeerSold2 from "./BeerSold2";
-import BeerSoldDup from "./BeerSoldDup";
-import BeerSoldDupB from "./BeerSoldDupB";
 import BeerSold from "./BeerSold";
-import BeerStats from "./BeerStats";
 import BeerGraph from "./BeerGraph";
 
-export default function Main({ facts, postSold, getSold }) {
+export default function Main({ facts }) {
   return (
     <section className="Main">
       <div className="QueueNr">
@@ -17,12 +13,7 @@ export default function Main({ facts, postSold, getSold }) {
       </div>
 
       <>
-        <BeerSoldDupB
-          getSold={getSold}
-          postSold={postSold}
-          serving={facts.serving}
-          storage={facts.storage}
-        ></BeerSoldDupB>
+        <BeerGraph serving={facts.serving} storage={facts.storage}></BeerGraph>
       </>
       <>
         <Bartenders bartenders={facts.bartenders}></Bartenders>

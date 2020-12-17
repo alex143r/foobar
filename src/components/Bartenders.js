@@ -1,26 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Bartenders({ bartenders }) {
-  const [workers, setWorkers] = useState([]);
+  const [workers, setWorkers] = useState(initBartenders);
 
-  if (workers.length === 0) {
-    bartenders.map((bartender) => {
-      setWorkers((prev) => [
-        ...prev,
-        {
-          name: bartender.name,
-          servingCustomer:
-            bartender.servingCustomer !== null
-              ? [bartender.servingCustomer]
-              : [],
-          count: 0,
-        },
-      ]);
-      return workers;
-    });
+  function initBartenders() {
+    const newArr = bartenders.map((bartender) => ({
+      name: bartender.name,
+      servingCustomer:
+        bartender.servingCustomer !== null ? [bartender.servingCustomer] : [],
+      count: 0,
+    }));
+    return newArr;
   }
 
-  if (workers.length > 0) {
+  useEffect(() => {
     bartenders.map((bartender) => {
       const nameId = workers
         .map((bartender) => {
@@ -45,7 +38,7 @@ export default function Bartenders({ bartenders }) {
         }
       });
     });
-  }
+  });
 
   return (
     <div className="Bartenders" key={1}>
@@ -81,33 +74,4 @@ export default function Bartenders({ bartenders }) {
       </div>
     </div>
   );
-
-  // return (
-  //   <>
-  //     <div>
-  //       <h2>Name</h2>
-  //       <p>{bartenders[0].name}</p>
-  //       <p>{bartenders[1].name}</p>
-  //       <p>{bartenders[2].name}</p>
-  //     </div>
-  //     <div>
-  //       <h2>Ekspederer</h2>
-  //       <p>{bartenders[0].servingCustomer}</p>
-  //       <p>{bartenders[1].servingCustomer}</p>
-  //       <p>{bartenders[2].servingCustomer}</p>
-  //     </div>
-  //     <div>
-  //       <h2>Name</h2>
-  //       <p>{bartenders[0].status}</p>
-  //       <p>{bartenders[1].status.toLowerCase()}</p>
-  //       <p>{bartenders[2].statusDetail}</p>
-  //     </div>
-  //     <div>
-  //       <h2>Name</h2>
-  //       <p>0</p>
-  //       <p>1</p>
-  //       <p>2</p>
-  //     </div>
-  //   </>
-  // );
 }
