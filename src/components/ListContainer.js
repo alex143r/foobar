@@ -3,7 +3,6 @@ import TapLevel from "./TapLevel";
 import StorageAmount from "./StorageAmount";
 
 export default function ListContainer({ storage, taps }) {
-  //console.log(storage, taps);
   // HOOKS
   const [filter, setFilter] = useState("all");
   const [sortKey, setSortKey] = useState("length");

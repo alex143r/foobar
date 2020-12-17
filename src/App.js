@@ -20,7 +20,6 @@ function App() {
     }, 2000);
     return () => clearInterval(interval);
   }, []);
-  //console.log(Main);
 
   return (
     <div className="App">
