@@ -108,7 +108,10 @@ export default function ListContainer({ storage, taps }) {
       <ul>
         {filteredList.map((beer) => {
           return (
-            <li key={beer.name}>
+            <li
+              key={beer.name}
+              style={beer.amount === 0 ? { opacity: 0.4 } : { opacity: 1 }}
+            >
               <h2 className="list-item-header">{beer.name}</h2>
               <div className="progress-container">
                 {beer.taps.length > 0 ? (
