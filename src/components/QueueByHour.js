@@ -33,7 +33,6 @@ export default function QueueByHour() {
 
   function handleData(data) {
     for (const property in data) {
-      console.log(`${property}: ${data[property]["AVG length"]}`);
       //States sættes med dataen
       setQueueAverage((queueAverage) =>
         queueAverage.concat(data[property]["AVG length"].toFixed(2))

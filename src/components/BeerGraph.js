@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
+import BeerSold2 from "./BeerSold2";
 
 export default function BeerGraph({ serving, storage }) {
   const [chartX, setChartX] = useState([]);
   const [chartY, setChartY] = useState([]);
   const [served, setServed] = useState([...serving]);
   const [arr, setArr] = useState(initArr);
+  const [totalSold, setTotalSold] = useState(0);
 
   function initArr() {
     const newArr = storage.map((beer) => ({ beer: beer.name, counter: 0 }));
@@ -32,19 +34,27 @@ export default function BeerGraph({ serving, storage }) {
         }
       }
     }
-  }, [served, serving, arr]);
+  }, [serving, arr, served]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       const newState = arr.map((beer) => {
         return beer.counter;
       });
-      console.log(newState);
-      console.log(arr);
       setChartY(newState);
     }, 5000);
     return () => clearInterval(interval);
   }, [chartY, arr]);
+  useEffect(() => {
+    chartY.reduce((a, b) => a + b, 0);
+  });
+
+  useEffect(() => {
+    const newTotal = chartY.reduce((a, b) => a + b, 0);
+    setTotalSold(newTotal);
+
+    return totalSold;
+  }, [chartY]);
 
   const data = {
     labels: chartX,
@@ -71,8 +81,12 @@ export default function BeerGraph({ serving, storage }) {
     responsive: true,
   };
   return (
-    <div className="Graph" style={{ padding: "1rem 2rem" }}>
-      <Bar data={data} options={options} chartY={chartY} />
-    </div>
+    <>
+      <div className="Graph" sold={totalSold} style={{ padding: "1rem 2rem" }}>
+        <Bar data={data} options={options} />
+      </div>
+
+      <BeerSold2 sold={totalSold}></BeerSold2>
+    </>
   );
 }

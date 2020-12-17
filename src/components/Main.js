@@ -4,6 +4,7 @@ import QueueNr from "./QueueNr";
 import Bartenders from "./Bartenders";
 import BeerSold from "./BeerSold";
 import BeerGraph from "./BeerGraph";
+import BeerSold2 from "./BeerSold2";
 
 export default function Main({ facts }) {
   return (
@@ -11,7 +12,6 @@ export default function Main({ facts }) {
       <div className="QueueNr">
         <QueueNr queue={facts.queue}></QueueNr>
       </div>
-
       <>
         <BeerGraph serving={facts.serving} storage={facts.storage}></BeerGraph>
       </>
@@ -19,9 +19,6 @@ export default function Main({ facts }) {
         <Bartenders bartenders={facts.bartenders}></Bartenders>
       </>
 
-      <div className="Sold">
-        <BeerSold serving={facts.serving}></BeerSold>
-      </div>
       <div className="Closing">
         <ClosingTime bar={facts.bar}></ClosingTime>
       </div>
