@@ -15,7 +15,7 @@ function App() {
   const [queueHistoryGraph, setQueueHistoryGraph] = useState("both");
 
   useEffect(() => {
-    //get(setFacts);
+    get(setFacts);
     const interval = setInterval(() => {
       get(setFacts);
       setTick((tick) => tick + 1);

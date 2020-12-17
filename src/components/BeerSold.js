@@ -1,29 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import BeerGraph from "./BeerGraph";
 
-export default function BeerSold({ serving }) {
-  const [beers, setBeers] = useState([...serving]);
-
-  function initialCount() {
-    let initCount = 0;
-    beers.forEach((order) => {
-      initCount += order.order.length;
-    });
-    return initCount;
+export default function BeerSold({ sold }) {
+  const [totalSold, setTotalSold] = useState(initSold);
+  function initSold() {
+    if (sold !== undefined) {
+      return sold;
+    }
   }
-
-  const [count, setCount] = useState(initialCount);
-
-  serving.forEach((order) => {
-    const findItem = beers.find((item) => item.id === order.id);
-
-    if (findItem === undefined) {
-      setBeers([...beers, order]);
-      setCount((prevCount) => prevCount + order.order.length);
+  useEffect(() => {
+    if (sold !== undefined) {
+      setTotalSold(sold);
     }
   });
+
   return (
-    <>
-      <h3>Beer sold:</h3> <h1>{count}</h1>
-    </>
+    <div className="Sold">
+      <h3>Beer sold:</h3>
+      <h1>{totalSold}</h1>
+    </div>
   );
 }

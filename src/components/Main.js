@@ -2,9 +2,7 @@ import React from "react";
 import ClosingTime from "./ClosingTime";
 import QueueNr from "./QueueNr";
 import Bartenders from "./Bartenders";
-import BeerSold from "./BeerSold";
 import BeerGraph from "./BeerGraph";
-import BeerSold2 from "./BeerSold2";
 
 export default function Main({ facts }) {
   return (

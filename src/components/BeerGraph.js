@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
-import BeerSold2 from "./BeerSold2";
+import BeerSold from "./BeerSold";
 
 export default function BeerGraph({ serving, storage }) {
   const [chartX, setChartX] = useState([]);
@@ -86,7 +86,7 @@ export default function BeerGraph({ serving, storage }) {
         <Bar data={data} options={options} />
       </div>
 
-      <BeerSold2 sold={totalSold}></BeerSold2>
+      <BeerSold sold={totalSold}></BeerSold>
     </>
   );
 }
