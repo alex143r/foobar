@@ -43,6 +43,7 @@ export default function ListContainer({ storage, taps }) {
 
   prepareObjects(storage);
 
+  //Variable, der bruges til at filtrere og sortere den oprindelige data
   let filteredList = fullDataArray;
 
   //Tilpasser filteredList til staten af filter
